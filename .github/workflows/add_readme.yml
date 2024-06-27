@@ -1,0 +1,24 @@
+name: Add README
+
+on:
+  push:
+    branches:
+      - main
+       
+jobs:
+  add-readme:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Add README.md
+        run: |
+          echo "# My Project" > README.md
+          echo "This is a sample README file for my project." >> README.md
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add README.md
+          git commit -m 'Add README.md'
+          git push origin main
